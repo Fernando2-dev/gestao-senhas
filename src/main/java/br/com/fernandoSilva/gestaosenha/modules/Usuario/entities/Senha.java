@@ -3,9 +3,11 @@ package br.com.fernandoSilva.gestaosenha.modules.Usuario.entities;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
+@Table(name = "tb_senha")
 public class Senha {
 
     @Id
