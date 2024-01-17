@@ -1,13 +1,13 @@
-package br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase;
+package br.com.fernandoSilva.gestaosenha.modules.usuario.useCase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.dto.UsuarioAtualizacaoDto;
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.entities.Usuario;
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.repository.UsuarioRepository;
-import br.com.fernandoSilva.gestaosenha.modules.execption.UserBadRequestExecption;
-import br.com.fernandoSilva.gestaosenha.modules.execption.UserNotFoundExecption;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.dto.UsuarioAtualizacaoDto;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.entities.Usuario;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.repository.UsuarioRepository;
+import br.com.fernandoSilva.gestaosenha.modules.execption.BadRequestExecption;
+import br.com.fernandoSilva.gestaosenha.modules.execption.NotFoundExecption;
 
 @Service
 public class UpdateUsuarioUseCase {
@@ -17,11 +17,11 @@ public class UpdateUsuarioUseCase {
     public Usuario execute(UsuarioAtualizacaoDto usuarioAtualizacaoDto) {
         var usuario = this.usuarioRepository.findById(usuarioAtualizacaoDto.id())
                 .orElseThrow(() -> {
-                    throw new UserNotFoundExecption("id não encontrado, por favor, digite um id válido");
+                    throw new NotFoundExecption("id não encontrado, por favor, digite um id válido");
                 });
 
         if (usuarioAtualizacaoDto.nome() == null || usuarioAtualizacaoDto.nome().trim().isEmpty()) {
-            throw new UserBadRequestExecption("O campo (nome) não pode estar vazio");
+            throw new BadRequestExecption("O campo (nome) não pode estar vazio");
         }
 
         usuario.atualizar(usuarioAtualizacaoDto);

@@ -1,7 +1,9 @@
-package br.com.fernandoSilva.gestaosenha.modules.Usuario.entities;
+package br.com.fernandoSilva.gestaosenha.modules.usuario.entities;
 
 
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.dto.UsuarioAtualizacaoDto;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.dto.UsuarioAtualizacaoDto;
+
+
 import br.com.fernandoSilva.gestaosenha.modules.interfaces.Pessoa;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,15 +13,15 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Entity(name = "Usuario")
+@Entity(name = "usuario")
 @Table(name = "tb_usuario")
 public class Usuario implements Pessoa<UsuarioAtualizacaoDto>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     private String nome;
+
 
     @Override
     public UsuarioAtualizacaoDto atualizar(UsuarioAtualizacaoDto usuarioAtualizacaoDto) {

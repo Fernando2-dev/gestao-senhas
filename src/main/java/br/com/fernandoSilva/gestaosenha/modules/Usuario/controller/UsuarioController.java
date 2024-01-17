@@ -1,4 +1,4 @@
-package br.com.fernandoSilva.gestaosenha.modules.Usuario.controller;
+package br.com.fernandoSilva.gestaosenha.modules.usuario.controller;
 
 import jakarta.validation.Valid;
 
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.dto.UsuarioAtualizacaoDto;
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.entities.Usuario;
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase.CreateUsuarioUseCase;
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase.DeleteUsuarioUseCase;
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase.ReadUsuarioUseCase;
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase.UpdateUsuarioUseCase;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.dto.UsuarioAtualizacaoDto;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.entities.Usuario;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.useCase.CreateUsuarioUseCase;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.useCase.DeleteUsuarioUseCase;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.useCase.ReadUsuarioUseCase;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.useCase.UpdateUsuarioUseCase;
 
 @RestController
 @RequestMapping("/usuario")

@@ -1,10 +1,10 @@
-package br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase;
+package br.com.fernandoSilva.gestaosenha.modules.usuario.useCase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.repository.UsuarioRepository;
-import br.com.fernandoSilva.gestaosenha.modules.execption.UserNotFoundExecption;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.repository.UsuarioRepository;
+import br.com.fernandoSilva.gestaosenha.modules.execption.NotFoundExecption;
 
 @Service
 public class DeleteUsuarioUseCase {
@@ -15,7 +15,7 @@ public class DeleteUsuarioUseCase {
     public void execute(Long id){
         var pessoaId = this.usuarioRepository.findById(id)
         .orElseThrow(() -> {
-            throw new UserNotFoundExecption("Usuário não encontrado na base de dados !");
+            throw new NotFoundExecption("Usuário não encontrado na base de dados !");
         });
        this.usuarioRepository.delete(pessoaId);     
     }

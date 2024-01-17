@@ -1,12 +1,12 @@
-package br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase;
+package br.com.fernandoSilva.gestaosenha.modules.usuario.useCase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.entities.Usuario;
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.repository.UsuarioRepository;
-import br.com.fernandoSilva.gestaosenha.modules.execption.UserBadRequestExecption;
-import br.com.fernandoSilva.gestaosenha.modules.execption.UserFoundExistingExecption;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.entities.Usuario;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.repository.UsuarioRepository;
+import br.com.fernandoSilva.gestaosenha.modules.execption.BadRequestExecption;
+import br.com.fernandoSilva.gestaosenha.modules.execption.FoundExistingExecption;
 
 @Service
 public class CreateUsuarioUseCase {
@@ -17,11 +17,11 @@ public class CreateUsuarioUseCase {
     public Usuario execute(Usuario usuario){
          this.usuarioRepository.findByNome(usuario.getNome())
         .ifPresent(user -> {
-            throw new UserFoundExistingExecption("usuário ja existe na base de dados");
+            throw new FoundExistingExecption("usuário ja existe na base de dados");
         });
 
         if (usuario.getNome() == null || usuario.getNome().trim().isEmpty()) {
-            throw new UserBadRequestExecption("O campo (nome) não pode estar vazio");
+            throw new BadRequestExecption("O campo (nome) não pode estar vazio");
         }
 
         return this.usuarioRepository.save(usuario);

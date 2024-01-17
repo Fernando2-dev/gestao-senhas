@@ -1,13 +1,13 @@
-package br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase;
+package br.com.fernandoSilva.gestaosenha.modules.usuario.useCase;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.entities.Usuario;
-import br.com.fernandoSilva.gestaosenha.modules.Usuario.repository.UsuarioRepository;
-import br.com.fernandoSilva.gestaosenha.modules.execption.UserNotFoundExecption;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.entities.Usuario;
+import br.com.fernandoSilva.gestaosenha.modules.usuario.repository.UsuarioRepository;
+import br.com.fernandoSilva.gestaosenha.modules.execption.NotFoundExecption;
 
 @Service
 public class ReadUsuarioUseCase {
@@ -19,7 +19,7 @@ public class ReadUsuarioUseCase {
         List<Usuario> usuarios = this.usuarioRepository.findAll();
 
         if (usuarios.isEmpty()) {
-            throw new UserNotFoundExecption("[] Não existe usuários cadastrados no banco de dados!");
+            throw new NotFoundExecption("[] Não existe usuários cadastrados no banco de dados!");
         }
 
         return usuarios;
