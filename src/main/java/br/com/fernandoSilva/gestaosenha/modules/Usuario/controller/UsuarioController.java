@@ -11,14 +11,17 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fernandoSilva.gestaosenha.modules.Usuario.dto.UsuarioAtualizacaoDto;
 import br.com.fernandoSilva.gestaosenha.modules.Usuario.entities.Usuario;
 import br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase.CreateUsuarioUseCase;
 import br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase.DeleteUsuarioUseCase;
 import br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase.ReadUsuarioUseCase;
+import br.com.fernandoSilva.gestaosenha.modules.Usuario.useCase.UpdateUsuarioUseCase;
 
 @RestController
 @RequestMapping("/usuario")
@@ -33,6 +36,9 @@ public class UsuarioController {
     @Autowired
     private ReadUsuarioUseCase readUsuarioUseCase;
 
+    @Autowired
+    private UpdateUsuarioUseCase updateUsuarioUseCase;
+
     @PostMapping
     public ResponseEntity<Object> create(@Valid @RequestBody Usuario usuario) {
         try {
@@ -42,6 +48,16 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+  @PutMapping
+   public ResponseEntity<Object> atualizacao(@RequestBody UsuarioAtualizacaoDto usuario){
+      try {
+         var pessoa = this.updateUsuarioUseCase.execute(usuario);
+         return ResponseEntity.ok().body(pessoa);
+      } catch (Exception e) {
+         return ResponseEntity.badRequest().body(e.getMessage());
+      }
+   }
 
     @GetMapping
     public ResponseEntity<Object> read() {
