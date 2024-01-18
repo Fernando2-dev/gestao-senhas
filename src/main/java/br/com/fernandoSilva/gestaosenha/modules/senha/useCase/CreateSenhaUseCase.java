@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fernandoSilva.gestaosenha.modules.execption.FoundExistingExecption;
-import br.com.fernandoSilva.gestaosenha.modules.funcionario.entities.Usuario;
-import br.com.fernandoSilva.gestaosenha.modules.funcionario.repository.UsuarioRepository;
+import br.com.fernandoSilva.gestaosenha.modules.funcionario.entities.Funcionario;
+import br.com.fernandoSilva.gestaosenha.modules.funcionario.repository.FuncionarioRepository;
 import br.com.fernandoSilva.gestaosenha.modules.senha.criptografia.PasswordEncriptor;
 import br.com.fernandoSilva.gestaosenha.modules.senha.entities.Senha;
 import br.com.fernandoSilva.gestaosenha.modules.senha.repository.SenhaRepository;
@@ -19,14 +19,14 @@ public class CreateSenhaUseCase {
     private SenhaRepository senhaRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository; 
+    private FuncionarioRepository funcionarioRepository; 
 
     @Autowired
     private PasswordEncriptor passwordEncriptor;
 
     public Senha execute(Senha senha) throws Exception {
         if (senha.getIdUsuario() != null) {
-            Optional<Usuario> usuarioOptional = this.usuarioRepository.findById(senha.getIdUsuario());
+            Optional<Funcionario> usuarioOptional = this.funcionarioRepository.findById(senha.getIdUsuario());
 
             if (usuarioOptional.isEmpty()) {
                 throw new FoundExistingExecption("Usuário com o ID fornecido não existe na base de dados.");

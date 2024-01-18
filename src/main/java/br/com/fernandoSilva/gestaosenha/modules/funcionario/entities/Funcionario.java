@@ -1,7 +1,7 @@
 package br.com.fernandoSilva.gestaosenha.modules.funcionario.entities;
 
 
-import br.com.fernandoSilva.gestaosenha.modules.funcionario.dto.UsuarioAtualizacaoDto;
+import br.com.fernandoSilva.gestaosenha.modules.funcionario.dto.FuncionarioAtualizacaoDto;
 import br.com.fernandoSilva.gestaosenha.modules.interfaces.Pessoa;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Entity(name = "usuario")
 @Table(name = "tb_usuario")
-public class Usuario implements Pessoa<UsuarioAtualizacaoDto>{
+public class Funcionario implements Pessoa<FuncionarioAtualizacaoDto>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class Usuario implements Pessoa<UsuarioAtualizacaoDto>{
 
 
     @Override
-    public UsuarioAtualizacaoDto atualizar(UsuarioAtualizacaoDto usuarioAtualizacaoDto) {
-        if (usuarioAtualizacaoDto.nome() != null) {
-            this.setNome(usuarioAtualizacaoDto.nome());
+    public FuncionarioAtualizacaoDto atualizar(FuncionarioAtualizacaoDto funcionarioAtualizacaoDto) {
+        if (funcionarioAtualizacaoDto.nome() != null) {
+            this.setNome(funcionarioAtualizacaoDto.nome());
         }
-        return usuarioAtualizacaoDto;
+        return funcionarioAtualizacaoDto;
     }
 }
