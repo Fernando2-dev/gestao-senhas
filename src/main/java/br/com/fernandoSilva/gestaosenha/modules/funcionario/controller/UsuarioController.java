@@ -23,7 +23,7 @@ import br.com.fernandoSilva.gestaosenha.modules.funcionario.useCase.UpdateUsuari
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/funcionario")
 public class UsuarioController {
 
     @Autowired
