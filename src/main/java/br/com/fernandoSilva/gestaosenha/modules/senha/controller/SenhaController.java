@@ -9,14 +9,17 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fernandoSilva.gestaosenha.modules.senha.dto.SenhaAtualizacaoDto;
 import br.com.fernandoSilva.gestaosenha.modules.senha.entities.Senha;
 import br.com.fernandoSilva.gestaosenha.modules.senha.useCase.CreateSenhaUseCase;
 import br.com.fernandoSilva.gestaosenha.modules.senha.useCase.DeleteSenhaUseCase;
 import br.com.fernandoSilva.gestaosenha.modules.senha.useCase.ReadSenhaUseCase;
+import br.com.fernandoSilva.gestaosenha.modules.senha.useCase.UpdateSenhaUseCase;
 import jakarta.validation.Valid;
 
 @RestController
@@ -31,9 +34,13 @@ public class SenhaController {
 
     @Autowired
     private DeleteSenhaUseCase deleteSenhaUseCase;
-
+    
+    @Autowired
+    private UpdateSenhaUseCase updateSenhaUseCase;
+    
+    
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody @Valid Senha senha) {
+    public ResponseEntity<Object> create(@Valid @RequestBody Senha senha) {
         try {
             var senhas = this.createSenhaUseCase.execute(senha);
             return ResponseEntity.status(HttpStatus.CREATED).body(senhas);
@@ -41,7 +48,15 @@ public class SenhaController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+ @PutMapping
+   public ResponseEntity<Object> atualizacao(@Valid @RequestBody SenhaAtualizacaoDto senhaAtualizacaoDto){
+      try {
+         var senhaNova = this.updateSenhaUseCase.execute(senhaAtualizacaoDto);
+         return ResponseEntity.ok().body(senhaNova);
+      } catch (Exception e) {
+         return ResponseEntity.badRequest().body(e.getMessage());
+      }
+   }
     @GetMapping
     public ResponseEntity<Object> read() {
         try {

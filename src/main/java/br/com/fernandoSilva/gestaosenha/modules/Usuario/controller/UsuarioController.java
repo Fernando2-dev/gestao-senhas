@@ -1,7 +1,5 @@
 package br.com.fernandoSilva.gestaosenha.modules.usuario.controller;
 
-import jakarta.validation.Valid;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +20,7 @@ import br.com.fernandoSilva.gestaosenha.modules.usuario.useCase.CreateUsuarioUse
 import br.com.fernandoSilva.gestaosenha.modules.usuario.useCase.DeleteUsuarioUseCase;
 import br.com.fernandoSilva.gestaosenha.modules.usuario.useCase.ReadUsuarioUseCase;
 import br.com.fernandoSilva.gestaosenha.modules.usuario.useCase.UpdateUsuarioUseCase;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/usuario")
@@ -45,19 +44,19 @@ public class UsuarioController {
             var pessoa = this.createUsuarioUseCase.execute(usuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(pessoa);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
-  @PutMapping
-   public ResponseEntity<Object> atualizacao(@RequestBody UsuarioAtualizacaoDto usuario){
-      try {
-         var pessoa = this.updateUsuarioUseCase.execute(usuario);
-         return ResponseEntity.ok().body(pessoa);
-      } catch (Exception e) {
-         return ResponseEntity.badRequest().body(e.getMessage());
-      }
-   }
+    @PutMapping
+    public ResponseEntity<Object> atualizacao(@Valid @RequestBody UsuarioAtualizacaoDto usuario) {
+        try {
+            var pessoa = this.updateUsuarioUseCase.execute(usuario);
+            return ResponseEntity.status(HttpStatus.OK).body(pessoa);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 
     @GetMapping
     public ResponseEntity<Object> read() {
@@ -68,7 +67,7 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         try {

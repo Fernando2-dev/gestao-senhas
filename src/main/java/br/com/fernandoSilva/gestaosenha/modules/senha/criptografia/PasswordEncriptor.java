@@ -3,19 +3,24 @@ package br.com.fernandoSilva.gestaosenha.modules.senha.criptografia;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
 
 import org.springframework.stereotype.Component;
-
-import java.util.Base64;
 
 @Component
 public class PasswordEncriptor {
     private static final String ALGORITHM = "AES";
+    private static final String KEY_FILE_PATH = "secret.key";
     private static SecretKey staticSecretKey;
 
-    public PasswordEncriptor() {
+    static {
+        staticSecretKey = readSecretKeyFromFile();
         if (staticSecretKey == null) {
             staticSecretKey = generateSecretKey();
+            saveSecretKeyToFile(staticSecretKey);
         }
     }
 
@@ -44,12 +49,33 @@ public class PasswordEncriptor {
         }
     }
 
-    private SecretKey generateSecretKey() {
+    private static SecretKey generateSecretKey() {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance(ALGORITHM);
             return keyGenerator.generateKey();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao gerar a chave secreta", e);
+        }
+    }
+
+    private static void saveSecretKeyToFile(SecretKey secretKey) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(KEY_FILE_PATH))) {
+            outputStream.writeObject(secretKey);
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao salvar a chave secreta no arquivo", e);
+        }
+    }
+
+    private static SecretKey readSecretKeyFromFile() {
+        try {
+            if (Files.exists(Paths.get(KEY_FILE_PATH))) {
+                try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(KEY_FILE_PATH))) {
+                    return (SecretKey) inputStream.readObject();
+                }
+            }
+            return null;
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao ler a chave secreta do arquivo", e);
         }
     }
 }

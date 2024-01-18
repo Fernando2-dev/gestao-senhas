@@ -1,3 +1,10 @@
 package br.com.fernandoSilva.gestaosenha.modules.usuario.dto;
 
-public record UsuarioAtualizacaoDto(Long id, String nome) {}
+import jakarta.validation.constraints.NotBlank;
+
+public record UsuarioAtualizacaoDto(
+        Long id,
+
+        @NotBlank(message = "O campo [Nome] não pode ser nullo") 
+        String nome) {
+}
