@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fernandoSilva.gestaosenha.modules.execption.FoundExistingExecption;
+import br.com.fernandoSilva.gestaosenha.modules.funcionario.entities.Usuario;
+import br.com.fernandoSilva.gestaosenha.modules.funcionario.repository.UsuarioRepository;
 import br.com.fernandoSilva.gestaosenha.modules.senha.criptografia.PasswordEncriptor;
 import br.com.fernandoSilva.gestaosenha.modules.senha.entities.Senha;
 import br.com.fernandoSilva.gestaosenha.modules.senha.repository.SenhaRepository;
-import br.com.fernandoSilva.gestaosenha.modules.usuario.entities.Usuario;
-import br.com.fernandoSilva.gestaosenha.modules.usuario.repository.UsuarioRepository;
 
 @Service
 public class CreateSenhaUseCase {

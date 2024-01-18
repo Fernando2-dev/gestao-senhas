@@ -1,10 +1,10 @@
-package br.com.fernandoSilva.gestaosenha.modules.usuario.useCase;
+package br.com.fernandoSilva.gestaosenha.modules.funcionario.useCase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fernandoSilva.gestaosenha.modules.usuario.repository.UsuarioRepository;
 import br.com.fernandoSilva.gestaosenha.modules.execption.NotFoundExecption;
+import br.com.fernandoSilva.gestaosenha.modules.funcionario.repository.UsuarioRepository;
 
 @Service
 public class DeleteUsuarioUseCase {
