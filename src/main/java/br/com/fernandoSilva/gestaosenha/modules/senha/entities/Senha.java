@@ -15,7 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity(name = "senha")
+@Entity(name = "Senha")
 @Table(name = "tb_senha")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,9 +34,9 @@ public class Senha implements Pessoa<SenhaAtualizacaoDto>{
     @NotBlank(message = "O campo [Senha] não pode ser nullo")
     private String senha;
 
-    @NotNull(message = "O campo [Id Usuário] não pode ser nullo")
-    @Column(name = "id_usuario")
-    private Long id_usuario;
+    @NotNull(message = "O campo [Id Usuário] não pode ser nullo ou coloque um id válido !")
+    @Column(name = "idusuario")
+    private Long idUsuario;
 
     @Override
    public SenhaAtualizacaoDto atualizar(SenhaAtualizacaoDto senhaAtualizacaoDto) {
