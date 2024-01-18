@@ -22,6 +22,7 @@ import br.com.fernandoSilva.gestaosenha.modules.usuario.useCase.ReadUsuarioUseCa
 import br.com.fernandoSilva.gestaosenha.modules.usuario.useCase.UpdateUsuarioUseCase;
 import jakarta.validation.Valid;
 
+
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
