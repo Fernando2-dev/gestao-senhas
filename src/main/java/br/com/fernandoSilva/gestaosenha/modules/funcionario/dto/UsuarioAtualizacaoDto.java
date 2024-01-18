@@ -1,4 +1,4 @@
-package br.com.fernandoSilva.gestaosenha.modules.usuario.dto;
+package br.com.fernandoSilva.gestaosenha.modules.funcionario.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

@@ -1,9 +1,7 @@
-package br.com.fernandoSilva.gestaosenha.modules.usuario.entities;
+package br.com.fernandoSilva.gestaosenha.modules.funcionario.entities;
 
 
-import br.com.fernandoSilva.gestaosenha.modules.usuario.dto.UsuarioAtualizacaoDto;
-
-
+import br.com.fernandoSilva.gestaosenha.modules.funcionario.dto.UsuarioAtualizacaoDto;
 import br.com.fernandoSilva.gestaosenha.modules.interfaces.Pessoa;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
