@@ -12,6 +12,7 @@ public class CreateUsuarioUseCase {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    
 
     public Usuario execute(Usuario usuario){
          this.usuarioRepository.findByNome(usuario.getNome())
